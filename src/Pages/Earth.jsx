@@ -1,40 +1,15 @@
 import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { OrbitControls, Preload } from "@react-three/drei";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader"; // Import GLTFLoader separately
 
 import CanvasLoader from "./Loader";
 
-// Custom ErrorBoundary component
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    // Log the error to an error reporting service
-    console.error("ErrorBoundary caught an error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <div>Something went wrong while loading the model.</div>;
-    }
-
-    return this.props.children;
-  }
-}
-
 const Earth = () => {
-  const earth = useGLTF("./planet/scene.gltf");
+  // Use useLoader to load the 3D model
+  const earth = useLoader(GLTFLoader, "./planet/scene.gltf");
 
-  return (
-    <primitive object={earth.scene} scale={2.5} position-y={0} rotation-y={0} />
-  );
+  return <primitive object={earth.scene} scale={2.5} position-y={0} rotation-y={0} />;
 };
 
 const EarthCanvas = () => {
@@ -59,10 +34,8 @@ const EarthCanvas = () => {
           minPolarAngle={Math.PI / 2}
         />
 
-        {/* Wrap Earth component with ErrorBoundary */}
-        <ErrorBoundary>
-          <Earth />
-        </ErrorBoundary>
+        {/* Earth component using useLoader */}
+        <Earth />
 
         <Preload all />
       </Suspense>
