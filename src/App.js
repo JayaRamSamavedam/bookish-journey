@@ -9,6 +9,9 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 // import EarthCanvas from "./Pages/Earth";
 import Footer from "./Pages/Footer";
 import Info from "./Pages/Info";
+import Team from "./Pages/Team";
+import Card from "./Pages/Card";
+
 function App() {
   return (
     <div>
@@ -22,7 +25,7 @@ function App() {
         {/* <Route path="/" element={<Layout />}> */}
           <Route path="/home"  element={<Home />} />
           <Route path="/info" element={<Info/>}/>
-          {/* <Route path="info" element={<Info/>}/> */}
+          <Route path="/team" element={<Card/>}/>
           {/* <Route
                     path="*"
                     element={<PageNotFound />}

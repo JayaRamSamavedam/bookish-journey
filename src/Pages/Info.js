@@ -9,12 +9,14 @@ import EarthCanvas from "./Earth";
 import AOS from "aos"
 import 'aos/dist/aos.css'
 import Newsletter from './Newsletter';
+import { useMediaQuery } from '@react-hook/media-query';
 const Info = () => {
   useEffect(()=>{
     AOS.init({duration:2000});
   },[])
-
+  const isMobile = useMediaQuery('(max-width: 768px)');
   return (
+    <>
     <div>
         <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
@@ -32,6 +34,7 @@ const Info = () => {
           {/* <Newsletter/> */}
       
     </div>
+</>
   )
 }
 
