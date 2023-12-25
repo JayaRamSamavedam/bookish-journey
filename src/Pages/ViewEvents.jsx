@@ -44,8 +44,7 @@ const ViewEvents = () => {
           )}
           {/* Add more details as needed */}
 
-          <button onClick={() => {if(id === null) setId(event.Eventid); else setId(null)}}>Update</button>
-          
+          <button onClick={() => {if(id === null) setId(event.Eventid); else setId(null)}}>Update</button> 
         
         </div>
         
