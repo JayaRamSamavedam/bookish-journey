@@ -1,7 +1,10 @@
 import React from 'react'
 import Newsletter from './Newsletter'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Footer = () => {
+
   return (
     <div>
       

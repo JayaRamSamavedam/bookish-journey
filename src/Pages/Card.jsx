@@ -2,13 +2,45 @@ import React from 'react'
 import github from "./github-icon.svg"
 import insta from "./black-instagram-icon.svg"
 import linkdin from  "./linkedin-app-icon.svg"
+import { useState ,useEffect } from 'react'
+
+import { Request } from '../helpers/axios_helper'
 const Card = () => {
+   
+
+    const [loading, setLoading] = useState(true);
+    const [teamMembers, setTeamMembers] = useState([]);
+    useEffect(() => {
+        
+        fetchData();
+      }, []);
+      const fetchData = async () => {
+        try {
+          const response = await Request('GET', '/get');
+          console.log(response)
+          const { team } = response.data;
+          setTeamMembers(team);
+          setLoading(false); 
+        } catch (error) {
+          console.error('Error fetching team members:', error);
+          setLoading(false);
+        }
+      };
   return (
     <div>
+        {loading ? (
+        <div class='flex space-x-2 justify-center items-center h-screen dark:invert'>
+        <span class='sr-only'>Loading...</span>
+         <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+       <div class='h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+       <div class='h-8 w-8 bg-black rounded-full animate-bounce'></div>
+   </div>
+      ) : (
       <div class="flex flex-wrap justify-center mt-10">
-
+      {teamMembers.map((member) => (
       <div class="p-4 max-w-sm ">
-<div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
+        <div className='text-center font-serif text-lg font-semibold from-neutral-950 hover:underline'>{member.name}</div>
+    <div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
             <div
                 class="rounded-full w-48 h-48 z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
             >
@@ -18,169 +50,29 @@ const Card = () => {
                     >
                         {/* <div class="font-bold">Jessie Watsica</div> */}
 
-                        <div class="opacity-60 grid grid-cols-3 gap-3 p-10">
-                            <div><a href='/home'><img src={github}/></a></div>
-                            <div><img src={insta}/></div>
-                            <div><img src={linkdin}/></div>
+                        <div class="grid grid-cols-3 gap-3 px-15 py-12">
+                            <div><a href={member.github}><img src={github} height={50} width={50}/></a></div>
+                            <div><a href={member.instagram} ><img src={insta} height={50} width={50}/></a></div>
+                            <div><a href={member.linkdin}> <img src={linkdin} height={50} width={50}/></a></div>
                         </div>
                     </div>
                 </div>
             </div>
             <img
-                alt=""
+            src={member.image}
+            alt={member.name}
                 class="object-cover rounded-full  border-dashed border-2 p-2 border-indigo-600 w-48 h-48 aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-                src="https://images.unsplash.com/photo-1650790362847-3c1dd609d0c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80
-"
             />
-        </div>
-        </div>
-        <div class="p-4 max-w-sm">
-<div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
-            <div
-                class="rounded-full w-48 h-48 z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
-            >
-                <div>
-                    <div
-                        class="transform-gpu  p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-8 transform transition duration-300 ease-in-out"
-                    >
-                        <div class="font-bold">Jessie Watsica</div>
-
-                        <div class="opacity-60 text-sm ">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Distinctio dolores error iure, perferendis
-                            sequi totam. Ad aliquam aperiam atque deleniti dolor
-                            dolorem enim esse et in, inventore itaque, pariatur
-                            reprehenderit.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img
-                alt=""
-                class="object-cover rounded-full w-48 h-48 aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-                src="https://images.unsplash.com/photo-1650790362847-3c1dd609d0c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80
-"
-            />
-        </div>
-        </div>
-        <div class="p-4 max-w-sm">
-<div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
-            <div
-                class="rounded-full w-48 h-48 z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
-            >
-                <div>
-                    <div
-                        class="transform-gpu  p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-8 transform transition duration-300 ease-in-out"
-                    >
-                        <div class="font-bold">Jessie Watsica</div>
-
-                        <div class="opacity-60 text-sm ">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Distinctio dolores error iure, perferendis
-                            sequi totam. Ad aliquam aperiam atque deleniti dolor
-                            dolorem enim esse et in, inventore itaque, pariatur
-                            reprehenderit.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img
-                alt=""
-                class="object-cover rounded-full w-48 h-48 aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-                src="https://images.unsplash.com/photo-1650790362847-3c1dd609d0c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80
-"
-            />
-        </div>
-        </div>
-        <div class="p-4 max-w-sm">
-<div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
-            <div
-                class="rounded-full w-48 h-48 z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
-            >
-                <div>
-                    <div
-                        class="transform-gpu  p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-8 transform transition duration-300 ease-in-out"
-                    >
-                        <div class="font-bold">Jessie Watsica</div>
-
-                        <div class="opacity-60 text-sm ">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Distinctio dolores error iure, perferendis
-                            sequi totam. Ad aliquam aperiam atque deleniti dolor
-                            dolorem enim esse et in, inventore itaque, pariatur
-                            reprehenderit.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img
-                alt=""
-                class="object-cover rounded-full w-48 h-48 aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-                src="https://images.unsplash.com/photo-1650790362847-3c1dd609d0c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80
-"
-            />
-        </div>
-        </div>
-        <div class="p-4 max-w-sm hover:scale-150 shadow-current ">
-<div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
-            <div
-                class="rounded-full w-48 h-48 z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
-            >
-                <div>
-                    <div
-                        class="transform-gpu  p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-8 transform transition duration-300 ease-in-out"
-                    >
-                        <div class="font-bold">Jessie Watsica</div>
-
-                        <div class="opacity-60 text-sm ">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Distinctio dolores error iure, perferendis
-                            sequi totam. Ad aliquam aperiam atque deleniti dolor
-                            dolorem enim esse et in, inventore itaque, pariatur
-                            reprehenderit.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img
-                alt=""
-                class="object-cover  rounded-full w-48 h-48 aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-                src="https://images.unsplash.com/photo-1650790362847-3c1dd609d0c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80
-"
-            />
-        </div>
-        </div>
-<div class="p-4 max-w-sm">
-<div class="overflow-hidden  aspect-video bg-red-400 cursor-pointer rounded-full w-48 h-48 relative group">
-            <div
-                class="rounded-full w-48 h-48 z-50 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out cursor-pointer absolute from-black/80 to-transparent bg-gradient-to-t inset-x-0 -bottom-2 pt-30 text-white flex items-end"
-            >
-                <div>
-                    <div
-                        class="transform-gpu  p-4 space-y-3 text-xl group-hover:opacity-100 group-hover:translate-y-0 translate-y-4 pb-8 transform transition duration-300 ease-in-out"
-                    >
-                        <div class="font-bold">Jessie Watsica</div>
-
-                        <div class="opacity-60 text-sm ">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Distinctio dolores error iure, perferendis
-                            sequi totam. Ad aliquam aperiam atque deleniti dolor
-                            dolorem enim esse et in, inventore itaque, pariatur
-                            reprehenderit.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <img
-                alt=""
-                class="object-cover rounded-full w-48 h-48 aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
-                src="https://images.unsplash.com/photo-1650790362847-3c1dd609d0c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80
-"
-            />
-        </div>
+            
         </div>
 
-</div>
+        <div className='text-center font-serif text-lg font-semibold from-neutral-950 hover:underline'>{member.role}</div>
+        </div>
+
+        ))}
+      
+      </div>
+      )}
 
     </div>
   )

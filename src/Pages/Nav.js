@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import Switcher from './Switcher';
 // import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -56,7 +59,7 @@ const Navbar = () => {
                 <Link to="/team" className="font-light tracking-widest font-mono text-xl md:bg-transparent text-white block pl-3 pr-4 py-2 pb-5 md:text-white md:p-0 rounded hover:underline hover:underline-offset-4 dark:text-white dark:hover:text-pink-500   dark:hover:underline underline-offset-4 decoration-blue-300">Team</Link>
               </li>
               <li>
-                <a href="#" className=" font-light tracking-widest font-mono text-xl md:bg-transparent text-white block pl-3 pr-4 py-2 pb-5 md:text-white md:p-0 rounded hover:underline hover:underline-offset-4 dark:text-white dark:hover:text-pink-500   dark:hover:underline underline-offset-4 decoration-blue-300">Contact</a>
+                <Link to="/event" className=" font-light tracking-widest font-mono text-xl md:bg-transparent text-white block pl-3 pr-4 py-2 pb-5 md:text-white md:p-0 rounded hover:underline hover:underline-offset-4 dark:text-white dark:hover:text-pink-500   dark:hover:underline underline-offset-4 decoration-blue-300">Event</Link>
               </li>
             </ul>
           </div>

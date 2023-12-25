@@ -1,6 +1,21 @@
 import React from 'react'
-
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Request } from '../helpers/axios_helper';
 const Newsletter = () => {
+  const [email,setEmail] = useState(null);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await Request('POST', '/subscribers/subscribe', {email:email});
+    if (res.status === 200) {
+      toast.success('You have subscribed successfully');
+      setEmail('');
+    } else {
+      toast.error(res.data.error);
+    }
+  };
   return (
     <div>
       <div class="py-15 md:py-15 lg:py-30">
@@ -9,8 +24,9 @@ const Newsletter = () => {
       <div>
         <h1 class="text-3xl font-bold text-center text-white md:text-4xl lg:text-left">Sign up for our newsletter</h1>
         <form class="mt-5 sm:mx-auto sm:flex sm:max-w-lg lg:mx-0">
-          <input class="block w-full px-5 py-3 outline-none border rounded shadow-sm text-gray-300 border-[#3c3c3c] bg-[#121212] focus:border-white focus:ring-1 focus:ring-white" type="email" placeholder="Your e-mail" required=""/>
-          <button class="w-full mt-2.5 px-5 py-3 rounded shadow-sm focus:outline-none font-medium text-white bg-blue-600 sm:flex-shrink-0 sm:w-auto sm:mt-0 sm:ml-5">Subscribe</button>
+          <input class="block w-full px-5 py-3 outline-none border rounded shadow-sm text-gray-300 border-[#3c3c3c] bg-[#121212] focus:border-white focus:ring-1 focus:ring-white" type="email" placeholder="Your e-mail"  value={email}
+            onChange={handleEmailChange}  required=""/>
+          <button onClick={handleSubmit} class="w-full mt-2.5 px-5 py-3 rounded shadow-sm focus:outline-none font-medium text-white bg-blue-600 sm:flex-shrink-0 sm:w-auto sm:mt-0 sm:ml-5">Subscribe</button>
         </form>
       </div>
       <div class="w-full mt-5 sm:w-auto lg:mt-0 lg:ml-5">
