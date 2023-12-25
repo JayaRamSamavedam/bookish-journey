@@ -5,7 +5,7 @@ import axios from 'axios';
 // dotenv.config();
 
 
-const globalurl="https://expressbackend-zsdf.onrender.com";
+const globalurl="https://expressbackend-zsdf.onrender.com:8888";
 export const getAuthToken = () => {
     return window.localStorage.getItem('auth_token');
 };
