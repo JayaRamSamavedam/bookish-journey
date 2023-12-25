@@ -8,6 +8,7 @@ import { slideIn } from "../utils/motion";
 import EarthCanvas from "./Earth";
 import AOS from "aos"
 import 'aos/dist/aos.css'
+import { Helmet } from "react-helmet";
 import Newsletter from './Newsletter';
 import { useMediaQuery } from '@react-hook/media-query';
 const Info = () => {
@@ -17,7 +18,11 @@ const Info = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
   return (
     <>
+    <Helmet>
+      <title>Info</title>
+    </Helmet>
     <div>
+
         <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
         className='h-auto md:container  sm:h-[350px] sm:w-full  md:h-[450px] lg:h-[650]'

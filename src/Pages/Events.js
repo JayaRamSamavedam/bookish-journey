@@ -7,6 +7,7 @@ import insta from "./black-instagram-icon.svg"
 import linkdin from  "./linkedin-app-icon.svg"
 import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react'
+import { Helmet } from "react-helmet";
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -41,6 +42,9 @@ const Events = () => {
     // onClick={() => handleClick(item.id)}
   return (
     <div>
+      <Helmet>
+        <title>Events</title>
+      </Helmet>
        {loading ? (
         <div class='flex space-x-2 justify-center items-center h-screen dark:invert'>
         <span class='sr-only'>Loading...</span>

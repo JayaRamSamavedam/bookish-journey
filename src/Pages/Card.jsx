@@ -3,7 +3,7 @@ import github from "./github-icon.svg"
 import insta from "./black-instagram-icon.svg"
 import linkdin from  "./linkedin-app-icon.svg"
 import { useState ,useEffect } from 'react'
-
+import { Helmet } from "react-helmet";
 import { Request } from '../helpers/axios_helper'
 const Card = () => {
    
@@ -28,6 +28,11 @@ const Card = () => {
       };
   return (
     <div>
+      <Helmet>
+        <title>
+          Team
+        </title>
+      </Helmet>
         {loading ? (
         <div class='flex space-x-2 justify-center items-center h-screen dark:invert'>
         <span class='sr-only'>Loading...</span>
