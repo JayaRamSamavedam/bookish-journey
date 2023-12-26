@@ -28,6 +28,7 @@ const BallCanvas = ({ icon }) => {
         <OrbitControls enableZoom={false} />
         {/* Pass icon directly to Ball component */}
         <Ball imgUrl={icon} />
+        
       </Suspense>
 
       <Preload all />

@@ -29,9 +29,19 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
-
+import sparrow from "./tech/sparrow-wifi.jpg";
+import air1 from "./tech/air1.jpg";
+import airng from "./tech/air-ng.jpg";
+import aerodump from "./tech/aerodump.jpg"
+import aircrack from "./tech/aircrack.jpg"
+import airplay from "./tech/airplay.jpg"
+import airdecap from "./tech/airdecap.jpg"
 export {
-  
+  airdecap,
+  airplay,
+  aircrack,
+  aerodump,
+  airng,
   backend,
   creator,
   mobile,
@@ -59,4 +69,6 @@ export {
   carrent,
   jobit,
   tripguide,
+  sparrow,
+  air1,
 };
