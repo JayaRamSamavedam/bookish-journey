@@ -19,12 +19,10 @@ const Navbar = () => {
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           <a href="/" className="flex">
            <img src={bb} className='h-12 w-12' />
-            <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Broadband</span>
+            <span className="self-center text-lg font-serif font-thin whitespace-nowrap text-amber-300  hover:text-fuchsia-600 hover:font-bold  dark:text-white">Broadband</span>
           </a>
           <div className="flex md:order-2">
-            <div className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-              <Switcher />
-            </div>
+            
             <button
               type="button"
               className="md:hidden text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 rounded-lg text-sm p-2 inline-flex items-center dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
