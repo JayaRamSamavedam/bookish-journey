@@ -37,14 +37,14 @@ function App() {
           <Route path="/home"  element={<Home />} />
           <Route path="/info" element={<Info/>}/>
           <Route path="/team" element={<Card/>}/>
-          <Route path="/image" element={<Imageupload/>}/>
+          {/* <Route path="/image" element={<Imageupload/>}/>
           <Route path="/create" element={<CreateUser/>}/>
-          <Route path="/view" element={<Viewusers/>}/>
+          <Route path="/view" element={<Viewusers/>}/> */}
           <Route path="/event" element={<Events/>}/>
-          <Route path="/editor" element={<Posts/>}/>
+          {/* <Route path="/editor" element={<Posts/>}/> */}
           <Route path="/content" element={<EventContent/>}/>
-          <Route path="/createevent" element={<EventForm/>}/>
-          <Route path="/viewevent" element={<ViewEvents/>}/>
+          {/* <Route path="/createevent" element={<EventForm/>}/>
+          <Route path="/viewevent" element={<ViewEvents/>}/> */}
           <Route path="/register" element={<Register/>}/>
           {/* <Route
                     path="*"
